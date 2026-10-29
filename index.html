@@ -116,7 +116,7 @@
       margin-bottom: 30px;
     }
 
-    /* GUÍA DE INSTALACIÓN DOWNLOADER */
+    /* GUIA DOWNLOADER */
     .guide-box {
       background: linear-gradient(135deg, rgba(229, 9, 20, 0.08) 0%, rgba(0, 210, 255, 0.04) 100%);
       border: 1px solid rgba(255, 255, 255, 0.12);
@@ -341,4 +341,195 @@
 
     .btn-download:hover {
       background: #e4e4e7;
-      transform
+      transform: translateY(-1px);
+    }
+
+    .btn-download.disabled {
+      background: rgba(255, 255, 255, 0.06);
+      color: #52525b;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+
+    footer {
+      margin-top: 60px;
+      text-align: center;
+      font-size: 12px;
+      color: #52525b;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- CABECERA DE MARCA OFICIAL -->
+    <div class="header">
+      <img src="5dde2d0a-c0a9-486f-95e7-c4910b5716fb.jpg" alt="Rosario Servicios Digitales" class="brand-logo-img">
+      <div class="sub-pill">ROSARIO SERVICIOS DIGITALES • <span>PANEL OFICIAL</span></div>
+      <div class="section-title">
+        <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+        APLICACIONES RECOMENDADAS
+      </div>
+      <div class="section-subtitle">Las mejores apps para Smart TV, TV Box y Celulares</div>
+    </div>
+
+    <!-- GUIA DOWNLOADER -->
+    <div class="guide-box">
+      <div class="guide-header">
+        <span>⚡ ¿Cómo instalar en tu Smart TV o TV Box?</span>
+      </div>
+      <div class="guide-steps">
+        <div class="step-item">
+          <span class="step-number">1</span>
+          <div class="step-text">
+            <h4>Abrí Downloader</h4>
+            <p>Descargá e iniciá la app <strong>Downloader by AFTVnews</strong> desde la tienda de tu tele.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <span class="step-number">2</span>
+          <div class="step-text">
+            <h4>Ingresá el Código</h4>
+            <p>Escribí el código numérico de la app en el buscador principal y presioná <strong>GO</strong>.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <span class="step-number">3</span>
+          <div class="step-text">
+            <h4>Instalá la App</h4>
+            <p>Aceptá la descarga automática y seleccioná <strong>Instalar</strong> cuando aparezca en pantalla.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <span class="step-number">4</span>
+          <div class="step-text">
+            <h4>¡Listo a disfrutar!</h4>
+            <p>Abrí la aplicación ingresando tus datos asignados de cliente.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TARJETAS -->
+    <div class="app-grid">
+
+      <!-- TARJETA 1: FEMON PLUS ESTÁNDAR -->
+      <div class="app-card">
+        <div class="card-banner" style="background: radial-gradient(circle at center, #1e1b4b 0%, #0c0a1f 100%);">
+          <img src="86170017-a3e9-4c7d-b0ae-771412531715.jpg" alt="Femon Plus" class="banner-img-femon">
+          <div class="device-badges">
+            <span class="badge-pill badge-tv">TV</span>
+            <span class="badge-pill badge-cell">CELULAR</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <h2 class="card-title">FEMON PLUS (Estándar)</h2>
+          <p class="card-desc">Aplicación recomendada para TV, TV Box y celulares. Canales en vivo HD/FHD de deportes y noticias.</p>
+          <div class="downloader-box">
+            <span class="lbl">Downloader:</span>
+            <span class="code">5065230</span>
+          </div>
+          <a href="https://descarga.femon.net" target="_blank" class="btn-download">
+            Descargar APK Oficial
+          </a>
+        </div>
+      </div>
+
+      <!-- TARJETA 2: FEMON PLAY LITE -->
+      <div class="app-card">
+        <div class="card-banner" style="background: radial-gradient(circle at center, #064e3b 0%, #061e18 100%);">
+          <img src="86170017-a3e9-4c7d-b0ae-771412531715.jpg" alt="Femon Lite" class="banner-img-femon" style="filter: hue-rotate(90deg);">
+          <div class="device-badges">
+            <span class="badge-pill badge-tv">TV</span>
+            <span class="badge-pill badge-cell">CELULAR</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <h2 class="card-title">FEMON PLAY LITE</h2>
+          <p class="card-desc">Versión ultra liviana diseñada para televisores antiguos, sticks o dispositivos con poca memoria.</p>
+          <div class="downloader-box">
+            <span class="lbl">Downloader:</span>
+            <span class="code">3175741</span>
+          </div>
+          <a href="https://app.femon.net/femonplus/descargas/lite.html" target="_blank" class="btn-download">
+            Descargar APK Lite
+          </a>
+        </div>
+      </div>
+
+      <!-- TARJETA 3: YOUTUBE PREMIUM (Enlace directo a compilación) -->
+      <div class="app-card">
+        <div class="card-banner" style="background: radial-gradient(circle at center, #450a0a 0%, #1f0404 100%);">
+          <div class="banner-graphic" style="color: #ff0000;">▶</div>
+          <div class="device-badges">
+            <span class="badge-pill badge-tv">TV</span>
+            <span class="badge-pill badge-cell">CELULAR</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <h2 class="card-title">YouTube Premium</h2>
+          <p class="card-desc">Todo el contenido de YouTube sin publicidad, sin pausas y con la máxima velocidad de carga.</p>
+          <div class="downloader-box">
+            <span class="lbl">Downloader TV:</span>
+            <span class="code">8843322</span>
+          </div>
+          <a href="https://github.com/rosariodigital/rosario-app/releases/download/v1.0/app-debug.apk" class="btn-download">
+            Descargar APK Móvil
+          </a>
+        </div>
+      </div>
+
+      <!-- TARJETA 4: SPOTIFY ROSARIO -->
+      <div class="app-card">
+        <div class="card-banner" style="background: radial-gradient(circle at center, #064e3b 0%, #05231a 100%);">
+          <div class="banner-graphic" style="color: #1ed760;">🎧</div>
+          <div class="device-badges">
+            <span class="badge-pill badge-cell">CELULAR</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <h2 class="card-title">Spotify Rosario</h2>
+          <p class="card-desc">Millones de canciones y podcasts sin cortes comerciales y con saltos ilimitados.</p>
+          <div class="downloader-box">
+            <span class="lbl">Dispositivos:</span>
+            <span class="code muted">Exclusivo Móvil</span>
+          </div>
+          <a href="#" class="btn-download disabled">
+            Preparando APK
+          </a>
+        </div>
+      </div>
+
+      <!-- TARJETA 5: ROSARIO MUSIC -->
+      <div class="app-card">
+        <div class="card-banner" style="background: radial-gradient(circle at center, #3b0764 0%, #160424 100%);">
+          <div class="banner-graphic" style="color: #c084fc;">🎵</div>
+          <div class="device-badges">
+            <span class="badge-pill badge-tv">TV</span>
+            <span class="badge-pill badge-cell">CELULAR</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <h2 class="card-title">Rosario Music</h2>
+          <p class="card-desc">Música en alta calidad con soporte para reproducción en segundo plano y pantalla bloqueada.</p>
+          <div class="downloader-box">
+            <span class="lbl">Downloader TV:</span>
+            <span class="code muted">Próximamente</span>
+          </div>
+          <a href="#" class="btn-download disabled">
+            Preparando APK
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <footer>
+      © Rosario Servicios Digitales • Todos los derechos reservados.
+    </footer>
+
+  </div>
+
+</body>
+</html>
