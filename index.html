@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rosario Play — Pack Plus</title>
+  <title>Rosario Play — Centro de Descargas</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -13,393 +13,131 @@
       margin: 0;
       padding: 0;
       font-family: 'Plus Jakarta Sans', sans-serif;
-      user-select: none;
     }
 
     body {
       background-color: #0b0d14;
       color: #ffffff;
       min-height: 100vh;
-      overflow-x: hidden;
+      padding: 40px 20px;
     }
 
-    /* PANTALLA DE LOGIN */
-    #login-screen {
-      position: fixed;
-      inset: 0;
-      background: radial-gradient(circle at top, #1e1b4b 0%, #0b0d14 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
-    }
-
-    .login-card {
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 24px;
-      padding: 40px;
-      width: 90%;
-      max-width: 420px;
-      backdrop-filter: blur(20px);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
-      text-align: center;
-    }
-
-    .login-card h1 {
-      font-size: 26px;
-      font-weight: 800;
-      margin-bottom: 8px;
-      background: linear-gradient(135deg, #a855f7, #6366f1);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .login-card p {
-      font-size: 14px;
-      color: #94a3b8;
-      margin-bottom: 28px;
-    }
-
-    .input-group {
-      text-align: left;
-      margin-bottom: 18px;
-    }
-
-    .input-group label {
-      display: block;
-      font-size: 13px;
-      color: #cbd5e1;
-      margin-bottom: 6px;
-      font-weight: 600;
-    }
-
-    .input-group input {
-      width: 100%;
-      padding: 14px 16px;
-      background: rgba(0, 0, 0, 0.4);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      border-radius: 12px;
-      color: #ffffff;
-      font-size: 15px;
-      outline: none;
-      transition: all 0.2s;
-    }
-
-    .input-group input:focus {
-      border-color: #a855f7;
-      box-shadow: 0 0 0 2px rgba(168, 85, 247, 0.25);
-    }
-
-    .btn-login {
-      width: 100%;
-      padding: 14px;
-      border: none;
-      border-radius: 12px;
-      background: linear-gradient(135deg, #9333ea, #4f46e5);
-      color: #ffffff;
-      font-size: 16px;
-      font-weight: 700;
-      cursor: pointer;
-      margin-top: 10px;
-      transition: transform 0.15s, opacity 0.2s;
-    }
-
-    .btn-login:hover {
-      opacity: 0.95;
-      transform: scale(1.02);
-    }
-
-    .login-msg {
-      margin-top: 15px;
-      font-size: 13px;
-      color: #ef4444;
-      display: none;
-    }
-
-    /* PANTALLA PRINCIPAL / HUB */
-    #hub-screen {
-      display: none;
-      padding: 30px;
-      max-width: 1300px;
+    .container {
+      max-width: 1100px;
       margin: 0 auto;
     }
 
-    .hub-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 30px;
-      padding-bottom: 15px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    /* HEADER */
+    header {
+      text-align: center;
+      margin-bottom: 50px;
     }
 
-    .hub-header h2 {
-      font-size: 22px;
+    header h1 {
+      font-size: 38px;
       font-weight: 800;
-      letter-spacing: -0.5px;
+      letter-spacing: -1px;
+      background: linear-gradient(135deg, #a855f7, #6366f1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 10px;
     }
 
-    .user-pill {
-      background: rgba(255, 255, 255, 0.08);
-      padding: 6px 14px;
-      border-radius: 20px;
-      font-size: 13px;
-      color: #cbd5e1;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .btn-logout {
-      background: transparent;
-      border: none;
-      color: #f87171;
-      cursor: pointer;
-      font-weight: 600;
-      font-size: 12px;
-    }
-
-    /* MENÚ SUPERIOR DE SECCIONES */
-    .nav-tabs {
-      display: flex;
-      gap: 12px;
-      margin-bottom: 35px;
-    }
-
-    .nav-tab {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+    header p {
+      font-size: 16px;
       color: #94a3b8;
-      padding: 10px 20px;
-      border-radius: 12px;
-      cursor: pointer;
-      font-weight: 600;
-      font-size: 14px;
-      transition: all 0.2s;
     }
 
-    .nav-tab.active, .nav-tab:hover {
-      background: #9333ea;
-      color: #ffffff;
-      border-color: #9333ea;
+    /* GRILLA DE APLICACIONES */
+    .apps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
     }
 
-    /* SECCIONES DE CONTENIDO */
-    .content-section {
-      display: none;
-    }
-    .content-section.active {
-      display: block;
-    }
-
-    /* VOD / CATEGORÍAS */
-    .category-title {
-      font-size: 18px;
-      font-weight: 700;
-      margin: 25px 0 15px 0;
-      color: #f1f5f9;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .category-row {
-      display: flex;
-      gap: 16px;
-      overflow-x: auto;
-      padding-bottom: 12px;
-      scrollbar-width: thin;
-    }
-
-    .card-movie {
-      flex: 0 0 160px;
+    .app-card {
       background: rgba(255, 255, 255, 0.03);
-      border-radius: 14px;
-      overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      cursor: pointer;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      backdrop-filter: blur(10px);
       transition: transform 0.2s, border-color 0.2s;
     }
 
-    .card-movie:hover {
-      transform: translateY(-4px);
-      border-color: #9333ea;
+    .app-card:hover {
+      transform: translateY(-5px);
+      border-color: #a855f7;
     }
 
-    .card-movie img {
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
-      display: block;
+    .app-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 16px;
     }
 
-    .card-movie .title {
-      padding: 10px;
-      font-size: 13px;
+    .app-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .app-title h2 {
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .app-title span {
+      font-size: 12px;
+      color: #a855f7;
       font-weight: 600;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
 
-    /* IFRAMES (YOUTUBE / MÚSICA) */
-    .embed-box {
-      width: 100%;
-      height: 75vh;
-      border: none;
-      border-radius: 16px;
-      background: #000;
-    }
-  </style>
-</head>
-<body>
-
-  <!-- LOGIN -->
-  <div id="login-screen">
-    <div class="login-card">
-      <h1>ROSARIO PLAY</h1>
-      <p>Ingresá con tu cuenta de Femon Plus</p>
-      
-      <form id="login-form">
-        <div class="input-group">
-          <label>Correo Electrónico</label>
-          <input type="text" id="user-email" placeholder="ejemplo@tv.com" required autofocus>
-        </div>
-        <div class="input-group">
-          <label>Contraseña / PIN</label>
-          <input type="password" id="user-pass" placeholder="••••••" required>
-        </div>
-        <button type="submit" class="btn-login">Ingresar al Pack</button>
-      </form>
-
-      <div id="login-error" class="login-msg"></div>
-    </div>
-  </div>
-
-  <!-- HUB PRINCIPAL -->
-  <div id="hub-screen">
-    <div class="hub-header">
-      <h2>ROSARIO PLAY <span>PACK PLUS</span></h2>
-      <div class="user-pill">
-        <span id="display-user">usuario</span>
-        <button class="btn-logout" id="btn-logout">Cerrar sesión</button>
-      </div>
-    </div>
-
-    <!-- TABS -->
-    <div class="nav-tabs">
-      <div class="nav-tab active" onclick="switchTab('tab-vod')">🎬 Películas y Series</div>
-      <div class="nav-tab" onclick="switchTab('tab-youtube')">📺 YouTube Limpio</div>
-      <div class="nav-tab" onclick="switchTab('tab-musica')">🎵 Música</div>
-    </div>
-
-    <!-- SECCIÓN 1: VOD ORGANIZADO -->
-    <div id="tab-vod" class="content-section active">
-      <div class="category-title">🔥 Estrenos 2026</div>
-      <div class="category-row" id="row-estrenos"></div>
-
-      <div class="category-title">💥 Acción y Suspenso</div>
-      <div class="category-row" id="row-accion"></div>
-
-      <div class="category-title">🍿 Comedia y Familiar</div>
-      <div class="category-row" id="row-comedia"></div>
-    </div>
-
-    <!-- SECCIÓN 2: YOUTUBE LIMPIO -->
-    <div id="tab-youtube" class="content-section">
-      <iframe class="embed-box" src="https://piped.video" allowfullscreen></iframe>
-    </div>
-
-    <!-- SECCIÓN 3: MÚSICA -->
-    <div id="tab-musica" class="content-section">
-      <iframe class="embed-box" src="https://music.youtube.com" allowfullscreen></iframe>
-    </div>
-  </div>
-
-  <script>
-    const loginScreen = document.getElementById('login-screen');
-    const hubScreen = document.getElementById('hub-screen');
-    const loginForm = document.getElementById('login-form');
-    const loginError = document.getElementById('login-error');
-    const displayUser = document.getElementById('display-user');
-    const btnLogout = document.getElementById('btn-logout');
-
-    // Catálogo de prueba con carátulas mientras enlazamos los endpoints de FlixLatam
-    const mockVOD = {
-      estrenos: [
-        { title: "Velocidad y Deseo", img: "https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=400&q=80" },
-        { title: "Verity: La sombra", img: "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=400&q=80" },
-        { title: "La guerra de los últimos", img: "https://images.unsplash.com/photo-1518676599649-7c77c68b6a98?w=400&q=80" }
-      ],
-      accion: [
-        { title: "Constelación Perro", img: "https://images.unsplash.com/photo-1509281373149-e957c6296406?w=400&q=80" },
-        { title: "Blue Lights (Serie)", img: "https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?w=400&q=80" }
-      ],
-      comedia: [
-        { title: "La herencia de Hope Hill", img: "https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?w=400&q=80" },
-        { title: "Las hijas de la criada", img: "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=400&q=80" }
-      ]
-    };
-
-    function renderCategory(containerId, items) {
-      const container = document.getElementById(containerId);
-      container.innerHTML = items.map(m => `
-        <div class="card-movie">
-          <img src="${m.img}" alt="${m.title}">
-          <div class="title">${m.title}</div>
-        </div>
-      `).join('');
+    .app-desc {
+      font-size: 14px;
+      color: #94a3b8;
+      line-height: 1.5;
+      margin-bottom: 24px;
     }
 
-    // Comprobar sesión guardada
-    window.addEventListener('DOMContentLoaded', () => {
-      renderCategory('row-estrenos', mockVOD.estrenos);
-      renderCategory('row-accion', mockVOD.accion);
-      renderCategory('row-comedia', mockVOD.comedia);
-
-      const savedUser = localStorage.getItem('rp_user');
-      if (savedUser) {
-        openHub(savedUser);
-      }
-    });
-
-    // Envío del login
-    loginForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const email = document.getElementById('user-email').value.trim();
-      const pass = document.getElementById('user-pass').value.trim();
-
-      // Validación directa con el usuario de prueba de Femon
-      if (email === "prueba@tv.com" && pass === "336682") {
-        localStorage.setItem('rp_user', email);
-        openHub(email);
-      } else {
-        loginError.innerText = "Usuario o contraseña incorrectos en Femon Plus.";
-        loginError.style.display = "block";
-      }
-    });
-
-    function openHub(user) {
-      displayUser.innerText = user;
-      loginScreen.style.display = 'none';
-      hubScreen.style.display = 'block';
+    /* BLOQUE DE DESCARGA */
+    .download-block {
+      background: rgba(0, 0, 0, 0.35);
+      border-radius: 14px;
+      padding: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
     }
 
-    btnLogout.addEventListener('click', () => {
-      localStorage.removeItem('rp_user');
-      hubScreen.style.display = 'none';
-      loginScreen.style.display = 'flex';
-      document.getElementById('user-pass').value = '';
-    });
-
-    function switchTab(tabId) {
-      document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
-      document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
-
-      event.target.classList.add('active');
-      document.getElementById(tabId).classList.add('active');
+    .tv-code {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
     }
-  </script>
-</body>
-</html>
+
+    .tv-code span {
+      font-size: 12px;
+      color: #cbd5e1;
+      font-weight: 600;
+    }
+
+    .tv-code code {
+      background: #9333ea;
+      color: #fff;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing
