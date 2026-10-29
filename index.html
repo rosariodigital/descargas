@@ -7,10 +7,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-  
-  <!-- Firebase SDKs compat -->
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 
   <style>
     :root {
@@ -42,113 +38,12 @@
       flex-direction: column;
     }
 
-    /* PANTALLA DE ACCESO (LOGIN WALL) */
-    #authOverlay {
-      position: fixed;
-      inset: 0;
-      background: radial-gradient(circle at top, #1f070a 0%, #09090d 100%);
-      z-index: 1000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-    }
-
-    .login-box {
-      background: var(--card);
-      border: 1px solid var(--card-border);
-      border-radius: 24px;
-      width: 100%;
-      max-width: 420px;
-      padding: 32px 24px;
-      text-align: center;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8), 0 0 20px var(--red-glow);
-    }
-
-    .brand-logo-large {
-      width: 72px;
-      height: 72px;
-      border-radius: 50%;
-      background: #000;
-      border: 2px solid var(--red);
-      margin: 0 auto 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 0 15px var(--red-glow);
-    }
-
-    .login-box h2 {
-      font-size: 20px;
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      margin-bottom: 6px;
-    }
-
-    .login-box p {
-      font-size: 13px;
-      color: var(--text-muted);
-      margin-bottom: 24px;
-    }
-
-    .login-group {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      text-align: left;
-      margin-bottom: 20px;
-    }
-
-    .login-group input {
-      background: #09090e;
-      border: 1px solid var(--card-border);
-      border-radius: 12px;
-      padding: 14px 16px;
-      color: #fff;
-      font-size: 15px;
-      outline: none;
-      transition: all 0.2s;
-    }
-
-    .login-group input:focus {
-      border-color: var(--cyan);
-      box-shadow: 0 0 10px rgba(0, 210, 255, 0.2);
-    }
-
-    .btn-login {
-      width: 100%;
-      background: var(--red);
-      color: #fff;
-      border: none;
-      padding: 15px;
-      border-radius: 14px;
-      font-size: 15px;
-      font-weight: 800;
-      text-transform: uppercase;
-      cursor: pointer;
-      box-shadow: 0 4px 16px var(--red-glow);
-      transition: transform 0.2s;
-    }
-
-    .btn-login:active {
-      transform: scale(0.98);
-    }
-
-    .auth-error {
-      margin-top: 14px;
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--red);
-      display: none;
-    }
-
-    /* PANTALLA PRINCIPAL DE DESCARGAS */
+    /* TOPBAR */
     .topbar {
       position: sticky;
       top: 0;
       z-index: 50;
-      background: rgba(9, 9, 13, 0.9);
+      background: rgba(9, 9, 13, 0.92);
       backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--card-border);
       padding: 14px 20px;
@@ -157,33 +52,35 @@
       justify-content: space-between;
     }
 
-    .brand-user {
+    .brand {
       display: flex;
       align-items: center;
       gap: 12px;
     }
 
-    .brand-title {
-      font-size: 14px;
-      font-weight: 900;
-      text-transform: uppercase;
+    .logo-container {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #000;
+      border: 2px solid var(--red);
+      box-shadow: 0 0 10px var(--red-glow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    .brand-user-tag {
+    .brand-title {
+      font-size: 15px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .brand-tag {
       font-size: 11px;
       color: var(--cyan);
       font-weight: 700;
-    }
-
-    .btn-logout {
-      background: rgba(229, 9, 20, 0.15);
-      border: 1px solid rgba(229, 9, 20, 0.4);
-      color: var(--red);
-      font-size: 11px;
-      font-weight: 800;
-      padding: 6px 12px;
-      border-radius: 10px;
-      cursor: pointer;
     }
 
     .container {
@@ -193,36 +90,39 @@
       width: 100%;
     }
 
-    .welcome-card {
-      background: linear-gradient(135deg, rgba(229, 9, 20, 0.15) 0%, rgba(139, 92, 246, 0.15) 100%);
-      border: 1px solid var(--card-border);
-      border-radius: 18px;
-      padding: 18px 20px;
+    /* BANNER DE BIENVENIDA */
+    .hero-banner {
+      background: linear-gradient(135deg, rgba(229, 9, 20, 0.2) 0%, rgba(139, 92, 246, 0.15) 100%);
+      border: 1px solid rgba(229, 9, 20, 0.3);
+      border-radius: 20px;
+      padding: 22px 20px;
       margin-bottom: 24px;
+      text-align: center;
     }
 
-    .welcome-card h3 {
-      font-size: 16px;
-      font-weight: 800;
-      margin-bottom: 4px;
+    .hero-banner h2 {
+      font-size: 20px;
+      font-weight: 900;
+      margin-bottom: 6px;
+      text-transform: uppercase;
     }
 
-    .welcome-card span {
-      font-size: 12px;
-      color: var(--green);
-      font-weight: 700;
+    .hero-banner p {
+      font-size: 13px;
+      color: #d1d5db;
+      line-height: 1.4;
     }
 
     .section-title {
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 800;
       text-transform: uppercase;
       color: var(--text-muted);
-      letter-spacing: 0.5px;
+      letter-spacing: 0.8px;
       margin-bottom: 14px;
     }
 
-    /* TARJETAS DE APKS */
+    /* TARJETAS DE APLICACIONES */
     .apk-card {
       background: var(--card);
       border: 1px solid var(--card-border);
@@ -233,6 +133,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 14px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
     }
 
     .apk-info {
@@ -249,6 +150,7 @@
       align-items: center;
       justify-content: center;
       font-size: 22px;
+      flex-shrink: 0;
     }
 
     .apk-icon.yt { background: rgba(229, 9, 20, 0.15); border: 1px solid rgba(229, 9, 20, 0.3); color: var(--red); }
@@ -267,246 +169,98 @@
     }
 
     .btn-download {
-      background: #ffffff;
-      color: #000000;
+      background: var(--red);
+      color: #ffffff;
       text-decoration: none;
       font-size: 12px;
       font-weight: 800;
       padding: 10px 16px;
-      border-radius: 10px;
+      border-radius: 12px;
       white-space: nowrap;
+      box-shadow: 0 4px 12px var(--red-glow);
       transition: transform 0.2s;
     }
 
     .btn-download:active {
       transform: scale(0.96);
     }
-
-    .btn-download.disabled {
-      background: rgba(255, 255, 255, 0.05);
-      color: var(--text-muted);
-      pointer-events: none;
-      border: 1px solid var(--card-border);
-    }
   </style>
 </head>
 <body>
 
-  <!-- PANTALLA DE BLOQUEO / INICIO DE SESIÓN -->
-  <div id="authOverlay">
-    <div class="login-box">
-      <div class="brand-logo-large">
-        <svg viewBox="0 0 100 100" width="46" height="46">
+  <!-- BARRA SUPERIOR -->
+  <div class="topbar">
+    <div class="brand">
+      <div class="logo-container">
+        <svg viewBox="0 0 100 100" width="28" height="28">
           <circle cx="50" cy="50" r="46" fill="#000" stroke="#e50914" stroke-width="4"/>
           <path d="M 32 25 L 56 25 C 68 25 74 31 74 42 C 74 53 66 58 56 58 L 44 58 L 44 75 L 32 75 Z M 44 36 L 44 48 L 54 48 C 60 48 62 45 62 42 C 62 38 59 36 54 36 Z" fill="#ffffff"/>
           <path d="M 52 56 L 68 75 L 54 75 L 42 60 Z" fill="#e50914"/>
         </svg>
       </div>
-      <h2>Rosario Digital</h2>
-      <p>Ingresá tu usuario y contraseña de cliente para acceder a tus aplicaciones.</p>
-
-      <div class="login-group">
-        <input type="text" id="logUser" placeholder="Usuario o correo" autocomplete="off" autocapitalize="none">
-        <input type="password" id="logPass" placeholder="Contraseña">
-      </div>
-
-      <button class="btn-login" id="btnLogin" onclick="loginClient()">Ingresar</button>
-      <div class="auth-error" id="authError">Usuario o contraseña incorrectos.</div>
-    </div>
-  </div>
-
-  <!-- INTERFAZ PRINCIPAL DE DESCARGAS (DESBLOQUEADA) -->
-  <div class="topbar">
-    <div class="brand-user">
       <div>
-        <div class="brand-title">Rosario Digital</div>
-        <div class="brand-user-tag" id="displayUser">Cliente Activo</div>
+        <div class="brand-title">Rosario Servicios Digitales</div>
+        <div class="brand-tag">CENTRO DE DESCARGAS OFICIAL</div>
       </div>
     </div>
-    <button class="btn-logout" onclick="logoutClient()">Cerrar sesión</button>
   </div>
 
   <div class="container">
-    <div class="welcome-card">
-      <h3 id="welcomeMsg">¡Bienvenido!</h3>
-      <span id="expireMsg">Suscripción activa hasta el --/--/----</span>
+    <div class="hero-banner">
+      <h2>Catálogo de Aplicaciones</h2>
+      <p>Descargá e instalá las aplicaciones autorizadas directamente en tu Smart TV, TV Box o dispositivo Android.</p>
     </div>
 
-    <div class="section-title">Aplicaciones Habilitadas</div>
-
-    <!-- YOUTUBE PREMIUM -->
-    <div class="apk-card" id="cardYt">
-      <div class="apk-info">
-        <div class="apk-icon yt">▶</div>
-        <div>
-          <div class="apk-name">YouTube Premium</div>
-          <div class="apk-desc" id="slotsYt">Sin anuncios y reproducción en segundo plano</div>
-        </div>
-      </div>
-      <a href="https://github.com/rosariodigital/descargas/raw/main/YouTube_Premium.apk" class="btn-download" id="btnYt">Descargar</a>
-    </div>
-
-    <!-- YOUTUBE MUSIC -->
-    <div class="apk-card" id="cardYtMusic">
-      <div class="apk-info">
-        <div class="apk-icon yt">🎵</div>
-        <div>
-          <div class="apk-name">YouTube Music</div>
-          <div class="apk-desc" id="slotsYtMusic">Música sin pausas y pantalla apagada</div>
-        </div>
-      </div>
-      <a href="https://github.com/rosariodigital/descargas/raw/main/YouTube_Music.apk" class="btn-download" id="btnYtMusic">Descargar</a>
-    </div>
-
-    <!-- SPOTIFY ROSARIO -->
-    <div class="apk-card" id="cardSpotify">
-      <div class="apk-info">
-        <div class="apk-icon sp">🎧</div>
-        <div>
-          <div class="apk-name">Spotify Rosario</div>
-          <div class="apk-desc" id="slotsSpotify">Sin anuncios y saltos ilimitados</div>
-        </div>
-      </div>
-      <a href="https://github.com/rosariodigital/descargas/raw/main/Spotify.apk" class="btn-download" id="btnSpotify">Descargar</a>
-    </div>
+    <div class="section-title">Aplicaciones Disponibles</div>
 
     <!-- FEMON PLAY TV -->
-    <div class="apk-card" id="cardFemon">
+    <div class="apk-card">
       <div class="apk-info">
         <div class="apk-icon tv">📺</div>
         <div>
           <div class="apk-name">Femon Play TV</div>
-          <div class="apk-desc" id="slotsFemon">Canales en vivo, deportes y series</div>
+          <div class="apk-desc">Televisión en vivo, eventos deportivos y series</div>
         </div>
       </div>
-      <a href="https://github.com/rosariodigital/descargas/raw/main/Femon_Play.apk" class="btn-download" id="btnFemon">Descargar</a>
+      <a href="#" id="linkFemon" class="btn-download">Descargar</a>
+    </div>
+
+    <!-- YOUTUBE PREMIUM -->
+    <div class="apk-card">
+      <div class="apk-info">
+        <div class="apk-icon yt">▶</div>
+        <div>
+          <div class="apk-name">YouTube Premium</div>
+          <div class="apk-desc">Sin anuncios y reproducción en segundo plano</div>
+        </div>
+      </div>
+      <a href="#" id="linkYt" class="btn-download">Descargar</a>
+    </div>
+
+    <!-- YOUTUBE MUSIC -->
+    <div class="apk-card">
+      <div class="apk-info">
+        <div class="apk-icon yt">🎵</div>
+        <div>
+          <div class="apk-name">YouTube Music</div>
+          <div class="apk-desc">Música sin pausas con pantalla apagada</div>
+        </div>
+      </div>
+      <a href="#" id="linkYtMusic" class="btn-download">Descargar</a>
+    </div>
+
+    <!-- SPOTIFY ROSARIO -->
+    <div class="apk-card">
+      <div class="apk-info">
+        <div class="apk-icon sp">🎧</div>
+        <div>
+          <div class="apk-name">Spotify Rosario</div>
+          <div class="apk-desc">Sin publicidad comercial y saltos ilimitados</div>
+        </div>
+      </div>
+      <a href="#" id="linkSpotify" class="btn-download">Descargar</a>
     </div>
   </div>
 
-  <script>
-    // Configuración conectada a tu Firebase rosario-digital-auth
-    const firebaseConfig = {
-      apiKey: "AIzaSyDJV2Y0egXhDAUoHuiexwZvrTeWDmASC1Y",
-      authDomain: "rosario-digital-auth.firebaseapp.com",
-      databaseURL: "https://rosario-digital-auth-default-rtdb.firebaseio.com",
-      projectId: "rosario-digital-auth",
-      storageBucket: "rosario-digital-auth.firebasestorage.app",
-      messagingSenderId: "38455749228",
-      appId: "1:38455749228:web:fe16519c831bcb56f04649"
-    };
-
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.database();
-
-    // Auto-login si ya inició sesión en la tele o celu
-    window.addEventListener('DOMContentLoaded', () => {
-      const savedUser = localStorage.getItem('rsd_user');
-      const savedPass = localStorage.getItem('rsd_pass');
-      if (savedUser && savedPass) {
-        verifyCredentials(savedUser, savedPass, true);
-      }
-    });
-
-    function loginClient() {
-      const u = document.getElementById('logUser').value.trim();
-      const p = document.getElementById('logPass').value.trim();
-      const err = document.getElementById('authError');
-      err.style.display = 'none';
-
-      if (!u || !p) {
-        err.innerText = "Por favor completá usuario y contraseña.";
-        err.style.display = 'block';
-        return;
-      }
-
-      const btn = document.getElementById('btnLogin');
-      btn.innerText = "Verificando...";
-      btn.disabled = true;
-
-      verifyCredentials(u, p, false);
-    }
-
-    function verifyCredentials(user, pass, isAutoLogin) {
-      const safeKey = user.toLowerCase().replace(/[^a-zA-Z0-9_-]/g, '_');
-      const err = document.getElementById('authError');
-      const btn = document.getElementById('btnLogin');
-
-      db.ref('clientes/' + safeKey).once('value')
-        .then(snapshot => {
-          const client = snapshot.val();
-          btn.innerText = "Ingresar";
-          btn.disabled = false;
-
-          if (!client || client.password !== pass) {
-            if (!isAutoLogin) {
-              err.innerText = "Usuario o contraseña incorrectos.";
-              err.style.display = 'block';
-            }
-            logoutClient();
-            return;
-          }
-
-          // Verificar fecha de vencimiento
-          const today = new Date().toISOString().split('T')[0];
-          if (client.vencimiento < today) {
-            err.innerText = `Suscripción vencida el ${client.vencimiento}. Contactá a Rosario Digital para renovar.`;
-            err.style.display = 'block';
-            document.getElementById('authOverlay').style.display = 'flex';
-            logoutClient();
-            return;
-          }
-
-          // Credenciales correctas y vigentes
-          localStorage.setItem('rsd_user', user);
-          localStorage.setItem('rsd_pass', pass);
-          unlockInterface(client);
-        })
-        .catch(error => {
-          btn.innerText = "Ingresar";
-          btn.disabled = false;
-          err.innerText = "Error de conexión: " + error.message;
-          err.style.display = 'block';
-        });
-    }
-
-    function unlockInterface(client) {
-      document.getElementById('authOverlay').style.display = 'none';
-      document.getElementById('displayUser').innerText = `Cliente: ${client.usuario}`;
-      document.getElementById('welcomeMsg').innerText = `¡Hola, ${client.usuario}!`;
-      document.getElementById('expireMsg').innerText = `Tu servicio vence el: ${client.vencimiento}`;
-
-      const apks = client.apks || {};
-
-      // Configurar permisos y cupos de cada APK
-      setupApkRow('btnYt', 'slotsYt', apks.youtube_premium, "Dispositivos permitidos");
-      setupApkRow('btnYtMusic', 'slotsYtMusic', apks.youtube_music, "Dispositivos permitidos");
-      setupApkRow('btnSpotify', 'slotsSpotify', apks.spotify, "Dispositivos permitidos");
-      setupApkRow('btnFemon', 'slotsFemon', apks.femon_tv, "Pantallas simultáneas");
-    }
-
-    function setupApkRow(btnId, slotsId, count, label) {
-      const btn = document.getElementById(btnId);
-      const text = document.getElementById(slotsId);
-      const c = parseInt(count) || 0;
-
-      if (c > 0) {
-        btn.classList.remove('disabled');
-        btn.innerText = "Descargar";
-        text.innerText = `${label}: ${c}`;
-      } else {
-        btn.classList.add('disabled');
-        btn.innerText = "No incluido";
-        text.innerText = "No tenés este servicio contratado.";
-      }
-    }
-
-    function logoutClient() {
-      localStorage.removeItem('rsd_user');
-      localStorage.removeItem('rsd_pass');
-      document.getElementById('authOverlay').style.display = 'flex';
-      document.getElementById('logUser').value = '';
-      document.getElementById('logPass').value = '';
-    }
-  </script>
 </body>
 </html>
