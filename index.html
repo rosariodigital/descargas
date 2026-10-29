@@ -3,366 +3,403 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rosario Servicios Digitales • Tienda de Apps</title>
+  <title>Rosario Play — Pack Plus</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --bg: #090a0f;
-      --card-bg: #121318;
-      --border-color: rgba(255, 255, 255, 0.08);
-      --accent-red: #e50914;
-      --accent-pink: #ff2a6d;
-      --accent-blue: #00d2ff;
-      --accent-green: #00e676;
-      --accent-yellow: #ffb703;
-      --text-main: #ffffff;
-      --text-muted: #9e9ea7;
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      user-select: none;
     }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
 
     body {
-      background-color: var(--bg);
-      background-image: radial-gradient(circle at 50% 0%, #1c1528 0%, #090a0f 65%);
-      color: var(--text-main);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 30px 16px;
-    }
-
-    .header {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      margin-bottom: 25px;
-    }
-
-    .brand-logo-img {
-      width: 105px;
-      height: 105px;
-      border-radius: 50%;
-      object-fit: cover;
-      box-shadow: 0 0 25px rgba(229, 9, 20, 0.45);
-      border: 2px solid rgba(255, 255, 255, 0.15);
-      margin-bottom: 14px;
-    }
-
-    .sub-pill {
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      padding: 6px 16px;
-      border-radius: 50px;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 1px;
-      color: #d1d1d6;
-      text-transform: uppercase;
-      margin-bottom: 18px;
-    }
-
-    .section-title {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 26px;
-      font-weight: 900;
-      letter-spacing: 0.5px;
+      background-color: #0b0d14;
       color: #ffffff;
-      text-transform: uppercase;
+      min-height: 100vh;
+      overflow-x: hidden;
     }
 
-    .section-title span {
-      color: var(--accent-pink);
+    /* PANTALLA DE LOGIN */
+    #login-screen {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at top, #1e1b4b 0%, #0b0d14 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
     }
 
-    .section-subtitle {
+    .login-card {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 24px;
+      padding: 40px;
+      width: 90%;
+      max-width: 420px;
+      backdrop-filter: blur(20px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+      text-align: center;
+    }
+
+    .login-card h1 {
+      font-size: 26px;
+      font-weight: 800;
+      margin-bottom: 8px;
+      background: linear-gradient(135deg, #a855f7, #6366f1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .login-card p {
       font-size: 14px;
-      color: var(--text-muted);
-      margin-top: 4px;
+      color: #94a3b8;
       margin-bottom: 28px;
     }
 
-    .app-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
-      gap: 22px;
-      width: 100%;
-      max-width: 1050px;
+    .input-group {
+      text-align: left;
+      margin-bottom: 18px;
     }
 
-    .app-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 20px;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-      position: relative;
-      transition: transform 0.25s ease, border-color 0.25s ease;
-    }
-
-    .app-card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(255, 255, 255, 0.2);
-    }
-
-    .card-banner {
-      height: 140px;
-      width: 100%;
-      background-size: cover;
-      background-position: center;
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .card-banner::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, var(--card-bg) 95%);
-    }
-
-    .device-badges {
-      position: absolute;
-      top: 12px;
-      right: 12px;
-      display: flex;
-      gap: 6px;
-      z-index: 2;
-    }
-
-    .badge-pill {
-      font-size: 10px;
-      font-weight: 800;
-      text-transform: uppercase;
-      padding: 4px 8px;
-      border-radius: 6px;
-      letter-spacing: 0.5px;
-    }
-
-    .badge-tv {
-      background: #e50914;
-      color: #ffffff;
-    }
-
-    .badge-cell {
-      background: #00e676;
-      color: #000000;
-    }
-
-    .card-body {
-      padding: 16px 20px 20px;
-      display: flex;
-      flex-direction: column;
-      flex-grow: 1;
-      gap: 12px;
-      z-index: 1;
-    }
-
-    .card-title {
-      font-size: 20px;
-      font-weight: 800;
-      color: #ffffff;
-    }
-
-    .card-desc {
+    .input-group label {
+      display: block;
       font-size: 13px;
-      color: var(--text-muted);
-      line-height: 1.45;
-      min-height: 38px;
+      color: #cbd5e1;
+      margin-bottom: 6px;
+      font-weight: 600;
     }
 
-    .downloader-box {
-      background: #191b22;
-      border: 1px dashed rgba(255, 255, 255, 0.15);
+    .input-group input {
+      width: 100%;
+      padding: 14px 16px;
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.15);
       border-radius: 12px;
-      padding: 10px 14px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      color: #ffffff;
+      font-size: 15px;
+      outline: none;
+      transition: all 0.2s;
     }
 
-    .downloader-box .lbl {
-      font-size: 12px;
+    .input-group input:focus {
+      border-color: #a855f7;
+      box-shadow: 0 0 0 2px rgba(168, 85, 247, 0.25);
+    }
+
+    .btn-login {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #9333ea, #4f46e5);
+      color: #ffffff;
+      font-size: 16px;
       font-weight: 700;
-      color: #a1a1aa;
-      text-transform: uppercase;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: transform 0.15s, opacity 0.2s;
     }
 
-    .downloader-box .code {
-      font-size: 20px;
-      font-weight: 900;
-      color: var(--accent-yellow);
-      letter-spacing: 1px;
-      font-family: monospace;
+    .btn-login:hover {
+      opacity: 0.95;
+      transform: scale(1.02);
     }
 
-    .btn-download {
+    .login-msg {
+      margin-top: 15px;
+      font-size: 13px;
+      color: #ef4444;
+      display: none;
+    }
+
+    /* PANTALLA PRINCIPAL / HUB */
+    #hub-screen {
+      display: none;
+      padding: 30px;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    .hub-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .hub-header h2 {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+
+    .user-pill {
+      background: rgba(255, 255, 255, 0.08);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 13px;
+      color: #cbd5e1;
       display: flex;
       align-items: center;
-      justify-content: center;
-      gap: 8px;
-      background: #ffffff;
-      color: #000000;
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: 800;
-      padding: 12px;
-      border-radius: 12px;
-      transition: background 0.2s;
-      margin-top: 4px;
+      gap: 10px;
     }
 
-    .btn-download:hover {
-      background: #eaeaea;
-    }
-
-    .btn-download.disabled {
-      background: rgba(255, 255, 255, 0.08);
-      color: #636366;
-      pointer-events: none;
-    }
-
-    .footer {
-      margin-top: 50px;
-      text-align: center;
+    .btn-logout {
+      background: transparent;
+      border: none;
+      color: #f87171;
+      cursor: pointer;
+      font-weight: 600;
       font-size: 12px;
-      color: #636366;
+    }
+
+    /* MENÚ SUPERIOR DE SECCIONES */
+    .nav-tabs {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 35px;
+    }
+
+    .nav-tab {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: #94a3b8;
+      padding: 10px 20px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 14px;
+      transition: all 0.2s;
+    }
+
+    .nav-tab.active, .nav-tab:hover {
+      background: #9333ea;
+      color: #ffffff;
+      border-color: #9333ea;
+    }
+
+    /* SECCIONES DE CONTENIDO */
+    .content-section {
+      display: none;
+    }
+    .content-section.active {
+      display: block;
+    }
+
+    /* VOD / CATEGORÍAS */
+    .category-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin: 25px 0 15px 0;
+      color: #f1f5f9;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .category-row {
+      display: flex;
+      gap: 16px;
+      overflow-x: auto;
+      padding-bottom: 12px;
+      scrollbar-width: thin;
+    }
+
+    .card-movie {
+      flex: 0 0 160px;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      cursor: pointer;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .card-movie:hover {
+      transform: translateY(-4px);
+      border-color: #9333ea;
+    }
+
+    .card-movie img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .card-movie .title {
+      padding: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* IFRAMES (YOUTUBE / MÚSICA) */
+    .embed-box {
+      width: 100%;
+      height: 75vh;
+      border: none;
+      border-radius: 16px;
+      background: #000;
     }
   </style>
 </head>
 <body>
 
-  <!-- Encabezado con logo de Rosario Servicios Digitales -->
-  <div class="header">
-    <img src="5dde2d0a-c0a9-486f-95e7-c4910b5716fb.jpg" alt="Rosario Servicios Digitales" class="brand-logo-img">
-    <div class="sub-pill">ROSARIO SERVICIOS DIGITALES • PANEL OFICIAL</div>
-    <div class="section-title">⭐ Aplicaciones Recomendadas</div>
-    <div class="section-subtitle">Las mejores apps para Smart TV, TV Box y Celulares</div>
+  <!-- LOGIN -->
+  <div id="login-screen">
+    <div class="login-card">
+      <h1>ROSARIO PLAY</h1>
+      <p>Ingresá con tu cuenta de Femon Plus</p>
+      
+      <form id="login-form">
+        <div class="input-group">
+          <label>Correo Electrónico</label>
+          <input type="text" id="user-email" placeholder="ejemplo@tv.com" required autofocus>
+        </div>
+        <div class="input-group">
+          <label>Contraseña / PIN</label>
+          <input type="password" id="user-pass" placeholder="••••••" required>
+        </div>
+        <button type="submit" class="btn-login">Ingresar al Pack</button>
+      </form>
+
+      <div id="login-error" class="login-msg"></div>
+    </div>
   </div>
 
-  <div class="app-grid">
-
-    <!-- 1. FEMON PLAY ESTÁNDAR -->
-    <div class="app-card">
-      <div class="card-banner" style="background: linear-gradient(135deg, #091a3a, #0044ff);">
-        <img src="86170017-a3e9-4c7d-b0ae-771412531715.jpg" alt="Femon" style="height: 80px; border-radius: 50%; z-index: 1;">
-        <div class="device-badges">
-          <span class="badge-pill badge-tv">TV</span>
-          <span class="badge-pill badge-cell">CELULAR</span>
-        </div>
-      </div>
-      <div class="card-body">
-        <h2 class="card-title">FEMON PLAY (Estándar)</h2>
-        <p class="card-desc">Aplicación principal recomendada para TV, TV Box y dispositivos compatibles. Canales en vivo HD y FHD.</p>
-        <div class="downloader-box">
-          <span class="lbl">Downloader:</span>
-          <span class="code">5065230</span>
-        </div>
-        <a href="https://descarga.femon.net" target="_blank" class="btn-download">
-          Descargar APK
-        </a>
+  <!-- HUB PRINCIPAL -->
+  <div id="hub-screen">
+    <div class="hub-header">
+      <h2>ROSARIO PLAY <span>PACK PLUS</span></h2>
+      <div class="user-pill">
+        <span id="display-user">usuario</span>
+        <button class="btn-logout" id="btn-logout">Cerrar sesión</button>
       </div>
     </div>
 
-    <!-- 2. FEMON PLAY LITE -->
-    <div class="app-card">
-      <div class="card-banner" style="background: linear-gradient(135deg, #0d2b27, #00b4d8);">
-        <img src="86170017-a3e9-4c7d-b0ae-771412531715.jpg" alt="Femon Lite" style="height: 75px; border-radius: 50%; z-index: 1; filter: hue-rotate(130deg);">
-        <div class="device-badges">
-          <span class="badge-pill badge-tv">TV</span>
-          <span class="badge-pill badge-cell">CELULAR</span>
-        </div>
-      </div>
-      <div class="card-body">
-        <h2 class="card-title">FEMON PLAY LITE</h2>
-        <p class="card-desc">Versión ligera y optimizada para TV Box y celulares de bajos recursos o versiones anteriores.</p>
-        <div class="downloader-box">
-          <span class="lbl">Downloader:</span>
-          <span class="code">3175741</span>
-        </div>
-        <a href="https://app.femon.net/femonplus/descargas/lite.html" target="_blank" class="btn-download">
-          Descargar APK Lite
-        </a>
-      </div>
+    <!-- TABS -->
+    <div class="nav-tabs">
+      <div class="nav-tab active" onclick="switchTab('tab-vod')">🎬 Películas y Series</div>
+      <div class="nav-tab" onclick="switchTab('tab-youtube')">📺 YouTube Limpio</div>
+      <div class="nav-tab" onclick="switchTab('tab-musica')">🎵 Música</div>
     </div>
 
-    <!-- 3. YT PREMIUM -->
-    <div class="app-card">
-      <div class="card-banner" style="background: linear-gradient(135deg, #3d0508, #cc0000);">
-        <div style="font-size: 55px; z-index: 1;">▶</div>
-        <div class="device-badges">
-          <span class="badge-pill badge-tv">TV</span>
-          <span class="badge-pill badge-cell">CELULAR</span>
-        </div>
-      </div>
-      <div class="card-body">
-        <h2 class="card-title">YouTube Premium</h2>
-        <p class="card-desc">Disfrutá todo el contenido de YouTube en tu TV y Móvil, sin publicidad y con la mejor fluidez.</p>
-        <div class="downloader-box">
-          <span class="lbl">Downloader:</span>
-          <span class="code">8843322</span>
-        </div>
-        <a href="https://github.com/rosariodigital/rosario-app/releases/download/v1.0/app-debug.apk" class="btn-download">
-          Descargar APK Móvil
-        </a>
-      </div>
+    <!-- SECCIÓN 1: VOD ORGANIZADO -->
+    <div id="tab-vod" class="content-section active">
+      <div class="category-title">🔥 Estrenos 2026</div>
+      <div class="category-row" id="row-estrenos"></div>
+
+      <div class="category-title">💥 Acción y Suspenso</div>
+      <div class="category-row" id="row-accion"></div>
+
+      <div class="category-title">🍿 Comedia y Familiar</div>
+      <div class="category-row" id="row-comedia"></div>
     </div>
 
-    <!-- 4. ROSARIO PLAY • PELÍCULAS Y SERIES -->
-    <div class="app-card">
-      <div class="card-banner" style="background: linear-gradient(135deg, #220630, #7b2cbf);">
-        <div style="font-size: 50px; z-index: 1;">🎬</div>
-        <div class="device-badges">
-          <span class="badge-pill badge-tv">TV</span>
-          <span class="badge-pill badge-cell">CELULAR</span>
-        </div>
-      </div>
-      <div class="card-body">
-        <h2 class="card-title">Rosario Play • Películas & Series</h2>
-        <p class="card-desc">Los últimos estrenos de cine y temporadas completas en resolución HD/4K sin cortes.</p>
-        <div class="downloader-box">
-          <span class="lbl">Downloader:</span>
-          <span class="code">Próximamente</span>
-        </div>
-        <a href="#" class="btn-download disabled">
-          En preparación
-        </a>
-      </div>
+    <!-- SECCIÓN 2: YOUTUBE LIMPIO -->
+    <div id="tab-youtube" class="content-section">
+      <iframe class="embed-box" src="https://piped.video" allowfullscreen></iframe>
     </div>
 
-    <!-- 5. ROSARIO MUSIC -->
-    <div class="app-card">
-      <div class="card-banner" style="background: linear-gradient(135deg, #062b1a, #1db954);">
-        <div style="font-size: 50px; z-index: 1;">🎧</div>
-        <div class="device-badges">
-          <span class="badge-pill badge-cell">CELULAR</span>
-        </div>
-      </div>
-      <div class="card-body">
-        <h2 class="card-title">Rosario Music</h2>
-        <p class="card-desc">Escuchá tus canciones favoritas sin interrupciones y con pantalla apagada en tu celular.</p>
-        <div class="downloader-box">
-          <span class="lbl">Downloader:</span>
-          <span class="code">Próximamente</span>
-        </div>
-        <a href="#" class="btn-download disabled">
-          En preparación
-        </a>
-      </div>
+    <!-- SECCIÓN 3: MÚSICA -->
+    <div id="tab-musica" class="content-section">
+      <iframe class="embed-box" src="https://music.youtube.com" allowfullscreen></iframe>
     </div>
-
   </div>
 
-  <div class="footer">
-    <p>© Rosario Servicios Digitales • Todos los derechos reservados</p>
-    <p style="margin-top: 4px;">Utilizá únicamente los enlaces y códigos oficiales verificados.</p>
-  </div>
+  <script>
+    const loginScreen = document.getElementById('login-screen');
+    const hubScreen = document.getElementById('hub-screen');
+    const loginForm = document.getElementById('login-form');
+    const loginError = document.getElementById('login-error');
+    const displayUser = document.getElementById('display-user');
+    const btnLogout = document.getElementById('btn-logout');
 
+    // Catálogo de prueba con carátulas mientras enlazamos los endpoints de FlixLatam
+    const mockVOD = {
+      estrenos: [
+        { title: "Velocidad y Deseo", img: "https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=400&q=80" },
+        { title: "Verity: La sombra", img: "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=400&q=80" },
+        { title: "La guerra de los últimos", img: "https://images.unsplash.com/photo-1518676599649-7c77c68b6a98?w=400&q=80" }
+      ],
+      accion: [
+        { title: "Constelación Perro", img: "https://images.unsplash.com/photo-1509281373149-e957c6296406?w=400&q=80" },
+        { title: "Blue Lights (Serie)", img: "https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?w=400&q=80" }
+      ],
+      comedia: [
+        { title: "La herencia de Hope Hill", img: "https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?w=400&q=80" },
+        { title: "Las hijas de la criada", img: "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=400&q=80" }
+      ]
+    };
+
+    function renderCategory(containerId, items) {
+      const container = document.getElementById(containerId);
+      container.innerHTML = items.map(m => `
+        <div class="card-movie">
+          <img src="${m.img}" alt="${m.title}">
+          <div class="title">${m.title}</div>
+        </div>
+      `).join('');
+    }
+
+    // Comprobar sesión guardada
+    window.addEventListener('DOMContentLoaded', () => {
+      renderCategory('row-estrenos', mockVOD.estrenos);
+      renderCategory('row-accion', mockVOD.accion);
+      renderCategory('row-comedia', mockVOD.comedia);
+
+      const savedUser = localStorage.getItem('rp_user');
+      if (savedUser) {
+        openHub(savedUser);
+      }
+    });
+
+    // Envío del login
+    loginForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = document.getElementById('user-email').value.trim();
+      const pass = document.getElementById('user-pass').value.trim();
+
+      // Validación directa con el usuario de prueba de Femon
+      if (email === "prueba@tv.com" && pass === "336682") {
+        localStorage.setItem('rp_user', email);
+        openHub(email);
+      } else {
+        loginError.innerText = "Usuario o contraseña incorrectos en Femon Plus.";
+        loginError.style.display = "block";
+      }
+    });
+
+    function openHub(user) {
+      displayUser.innerText = user;
+      loginScreen.style.display = 'none';
+      hubScreen.style.display = 'block';
+    }
+
+    btnLogout.addEventListener('click', () => {
+      localStorage.removeItem('rp_user');
+      hubScreen.style.display = 'none';
+      loginScreen.style.display = 'flex';
+      document.getElementById('user-pass').value = '';
+    });
+
+    function switchTab(tabId) {
+      document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+
+      event.target.classList.add('active');
+      document.getElementById(tabId).classList.add('active');
+    }
+  </script>
 </body>
 </html>
