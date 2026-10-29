@@ -3,11 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rosario Play — Centro de Descargas</title>
+  <title>Rosario Play — Panel Oficial de Descargas</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --bg-dark: #08090d;
+      --card-bg: rgba(18, 20, 29, 0.7);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --primary-purple: #8b5cf6;
+      --primary-glow: rgba(139, 92, 246, 0.25);
+      --accent-blue: #3b82f6;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+    }
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -16,244 +27,293 @@
     }
 
     body {
-      background-color: #0b0d14;
-      color: #ffffff;
+      background-color: var(--bg-dark);
+      background-image: 
+        radial-gradient(circle at 50% -20%, rgba(139, 92, 246, 0.18) 0%, transparent 60%),
+        radial-gradient(circle at 100% 50%, rgba(59, 130, 246, 0.08) 0%, transparent 40%);
+      color: var(--text-main);
       min-height: 100vh;
-      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 60px 20px;
     }
 
     .container {
-      max-width: 1100px;
+      width: 100%;
+      max-width: 1150px;
       margin: 0 auto;
     }
 
-    header {
+    /* CABECERA / MARCA ESTILO ARGENTUM */
+    .hero {
       text-align: center;
-      margin-bottom: 50px;
+      margin-bottom: 55px;
     }
 
-    header h1 {
-      font-size: 38px;
+    .badge-top {
+      display: inline-block;
+      padding: 6px 16px;
+      background: rgba(139, 92, 246, 0.12);
+      border: 1px solid rgba(139, 92, 246, 0.3);
+      border-radius: 9999px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #c4b5fd;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      font-size: 42px;
       font-weight: 800;
-      letter-spacing: -1px;
-      background: linear-gradient(135deg, #a855f7, #6366f1);
+      letter-spacing: -1.2px;
+      background: linear-gradient(135deg, #ffffff 40%, #c4b5fd 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
 
-    header p {
+    .hero p {
       font-size: 16px;
-      color: #94a3b8;
+      color: var(--text-muted);
+      max-width: 620px;
+      margin: 0 auto;
+      line-height: 1.6;
     }
 
-    .apps-grid {
+    /* GRID DE TARJETAS */
+    .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 24px;
     }
 
-    .app-card {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 20px;
-      padding: 28px;
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      padding: 30px 24px;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      backdrop-filter: blur(10px);
-      transition: transform 0.2s, border-color 0.2s;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.25s ease;
     }
 
-    .app-card:hover {
-      transform: translateY(-5px);
-      border-color: #a855f7;
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.6), transparent);
+      opacity: 0;
+      transition: opacity 0.25s;
     }
 
-    .app-header {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      margin-bottom: 16px;
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(139, 92, 246, 0.4);
+      box-shadow: 0 16px 36px -10px var(--primary-glow);
     }
 
-    .app-icon {
-      width: 56px;
-      height: 56px;
-      border-radius: 14px;
+    .card:hover::before {
+      opacity: 1;
+    }
+
+    .card-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 28px;
-      background: rgba(255, 255, 255, 0.06);
+      font-size: 30px;
+      margin-bottom: 22px;
     }
 
-    .app-title h2 {
-      font-size: 20px;
+    .card h3 {
+      font-size: 21px;
       font-weight: 700;
+      margin-bottom: 6px;
     }
 
-    .app-title span {
+    .card-tag {
       font-size: 12px;
-      color: #a855f7;
       font-weight: 600;
+      color: #a78bfa;
       text-transform: uppercase;
       letter-spacing: 0.5px;
+      margin-bottom: 12px;
     }
 
-    .app-desc {
+    .card-desc {
       font-size: 14px;
-      color: #94a3b8;
+      color: var(--text-muted);
       line-height: 1.5;
-      margin-bottom: 24px;
+      margin-bottom: 26px;
     }
 
-    .download-block {
-      background: rgba(0, 0, 0, 0.35);
-      border-radius: 14px;
-      padding: 16px;
+    /* SECCIÓN DE ACCIONES / DOWNLOADER */
+    .card-action {
+      background: rgba(0, 0, 0, 0.4);
       border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 16px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
     }
 
-    .tv-code {
+    .downloader-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 12px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      font-size: 13px;
     }
 
-    .tv-code span {
-      font-size: 12px;
-      color: #cbd5e1;
+    .downloader-row span {
+      color: var(--text-muted);
       font-weight: 600;
     }
 
-    .tv-code code {
-      background: #9333ea;
-      color: #fff;
+    .downloader-code {
+      background: rgba(139, 92, 246, 0.15);
+      border: 1px solid rgba(139, 92, 246, 0.35);
+      color: #ddd6fe;
       padding: 4px 10px;
-      border-radius: 6px;
-      font-size: 14px;
+      border-radius: 8px;
       font-weight: 800;
+      font-size: 14px;
       letter-spacing: 1px;
     }
 
-    .btn-download {
+    .btn-card {
       display: block;
       width: 100%;
       text-align: center;
       padding: 12px;
-      background: linear-gradient(135deg, #9333ea, #4f46e5);
+      background: linear-gradient(135deg, #7c3aed 0%, #4f46e5 100%);
       color: #ffffff;
       text-decoration: none;
       font-weight: 700;
       font-size: 14px;
-      border-radius: 10px;
-      transition: opacity 0.2s;
+      border-radius: 12px;
+      transition: all 0.2s;
     }
 
-    .btn-download:hover {
-      opacity: 0.9;
+    .btn-card:hover {
+      opacity: 0.95;
+      box-shadow: 0 4px 15px rgba(124, 58, 237, 0.35);
+    }
+
+    .btn-disabled {
+      background: rgba(255, 255, 255, 0.08);
+      color: #64748b;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+
+    footer {
+      margin-top: 60px;
+      text-align: center;
+      font-size: 13px;
+      color: #64748b;
     }
   </style>
 </head>
 <body>
 
   <div class="container">
-    <header>
-      <h1>ROSARIO PLAY</h1>
-      <p>Centro Oficial de Descargas y Aplicaciones Digitales</p>
-    </header>
+    <div class="hero">
+      <div class="badge-top">Ecosistema Multimedia</div>
+      <h1>Rosario Play</h1>
+      <p>Centro exclusivo de descargas y aplicaciones. Seleccioná tu servicio para instalar en Smart TV, TV Box o dispositivo móvil.</p>
+    </div>
 
-    <div class="apps-grid">
+    <div class="grid">
 
-      <!-- APP 1: YOUTUBE -->
-      <div class="app-card">
+      <!-- TARJETA 1: ROSARIO TUBE -->
+      <div class="card">
         <div>
-          <div class="app-header">
-            <div class="app-icon">📺</div>
-            <div class="app-title">
-              <h2>Rosario Tube</h2>
-              <span>Video Streaming</span>
-            </div>
-          </div>
-          <p class="app-desc">YouTube limpio sin interrupciones, sin publicidad y optimizado tanto para Smart TV como para celulares.</p>
+          <div class="card-icon">📺</div>
+          <div class="card-tag">Video Streaming</div>
+          <h3>Rosario Tube</h3>
+          <p class="card-desc">YouTube limpio sin cortes, sin anuncios publicitarios y con soporte para 4K en pantallas Smart TV y móviles.</p>
         </div>
-        <div class="download-block">
-          <div class="tv-code">
-            <span>Código Downloader TV:</span>
-            <code>9061005</code>
+        <div class="card-action">
+          <div class="downloader-row">
+            <span>Downloader TV:</span>
+            <span class="downloader-code">9061005</span>
           </div>
-          <a href="https://github.com/rosariodigital/descargas/releases" class="btn-download">Descargar APK Celular</a>
+          <a href="https://github.com/rosariodigital/descargas/releases" class="btn-card">Descargar APK</a>
         </div>
       </div>
 
-      <!-- APP 2: YOUTUBE MUSIC -->
-      <div class="app-card">
+      <!-- TARJETA 2: ROSARIO MUSIC -->
+      <div class="card">
         <div>
-          <div class="app-header">
-            <div class="app-icon">🎵</div>
-            <div class="app-title">
-              <h2>Rosario Music</h2>
-              <span>YouTube Music</span>
-            </div>
-          </div>
-          <p class="app-desc">Reproducción de música en segundo plano, audio en alta fidelidad y listas ilimitadas sin anuncios.</p>
+          <div class="card-icon">🎵</div>
+          <div class="card-tag">Audio Streaming</div>
+          <h3>Rosario Music</h3>
+          <p class="card-desc">Toda la música y videoclips en alta calidad con reproducción en segundo plano y pantalla apagada.</p>
         </div>
-        <div class="download-block">
-          <div class="tv-code">
-            <span>Código Downloader TV:</span>
-            <code>Próximamente</code>
+        <div class="card-action">
+          <div class="downloader-row">
+            <span>Downloader TV:</span>
+            <span class="downloader-code">Próximamente</span>
           </div>
-          <a href="#" class="btn-download" style="opacity: 0.6; pointer-events: none;">Preparando Enlace</a>
+          <a href="#" class="btn-card btn-disabled">Preparando APK</a>
         </div>
       </div>
 
-      <!-- APP 3: SPOTIFY ROSARIO -->
-      <div class="app-card">
+      <!-- TARJETA 3: SPOTIFY ROSARIO -->
+      <div class="card">
         <div>
-          <div class="app-header">
-            <div class="app-icon">🟢</div>
-            <div class="app-title">
-              <h2>Spotify Rosario</h2>
-              <span>Música & Podcasts</span>
-            </div>
-          </div>
-          <p class="app-desc">Toda tu música favorita, playlists y lanzamientos con saltos de canciones ilimitados y sin cortes comerciales.</p>
+          <div class="card-icon">🎧</div>
+          <div class="card-tag">Música & Podcasts</div>
+          <h3>Spotify Rosario</h3>
+          <p class="card-desc">Listas de reproducción personalizadas, podcasts y lanzamientos oficiales sin cortes ni restricciones.</p>
         </div>
-        <div class="download-block">
-          <div class="tv-code">
-            <span>Versión Móvil / Tablet</span>
-            <code>Exclusivo Móvil</code>
+        <div class="card-action">
+          <div class="downloader-row">
+            <span>Dispositivos:</span>
+            <span class="downloader-code">Celulares</span>
           </div>
-          <a href="#" class="btn-download" style="opacity: 0.6; pointer-events: none;">Preparando Enlace</a>
+          <a href="#" class="btn-card btn-disabled">Preparando APK</a>
         </div>
       </div>
 
-      <!-- APP 4: FEMON PLUS -->
-      <div class="app-card">
+      <!-- TARJETA 4: FEMON PLUS -->
+      <div class="card">
         <div>
-          <div class="app-header">
-            <div class="app-icon">⚡</div>
-            <div class="app-title">
-              <h2>Femon Plus</h2>
-              <span>Televisión en Vivo</span>
-            </div>
-          </div>
-          <p class="app-desc">Todos los canales nacionales, provinciales, deportes y eventos en vivo con tu usuario y contraseña de cliente[cite: 5].</p>
+          <div class="card-icon">⚡</div>
+          <div class="card-tag">TV en Vivo</div>
+          <h3>Femon Plus</h3>
+          <p class="card-desc">Canales en vivo de Rosario, Argentina y deportes prémium. Requiere usuario y contraseña asignados[cite: 5].</p>
         </div>
-        <div class="download-block">
-          <div class="tv-code">
-            <span>Downloader Estándar:</span>
-            <code>5065230</code>
+        <div class="card-action">
+          <div class="downloader-row">
+            <span>Downloader TV:</span>
+            <span class="downloader-code">5065230</span>
           </div>
-          <a href="https://descarga.femon.net" class="btn-download" target="_blank">Descarga Oficial</a>
+          <a href="https://descarga.femon.net" target="_blank" class="btn-card">Descarga Oficial</a>
         </div>
       </div>
 
     </div>
+
+    <footer>
+      Rosario Play • Todos los derechos reservados
+    </footer>
   </div>
 
 </body>
