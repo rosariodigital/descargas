@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Rosario Servicios Digitales • Centro de Descargas</title>
+  <title>Rosario Servicios Digitales • Descargas</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet">
@@ -38,7 +38,6 @@
       flex-direction: column;
     }
 
-    /* TOPBAR */
     .topbar {
       position: sticky;
       top: 0;
@@ -59,8 +58,8 @@
     }
 
     .logo-container {
-      width: 40px;
-      height: 40px;
+      width: 42px;
+      height: 42px;
       border-radius: 50%;
       background: #000;
       border: 2px solid var(--red);
@@ -68,6 +67,13 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      overflow: hidden;
+    }
+
+    .logo-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     .brand-title {
@@ -90,7 +96,6 @@
       width: 100%;
     }
 
-    /* BANNER DE BIENVENIDA */
     .hero-banner {
       background: linear-gradient(135deg, rgba(229, 9, 20, 0.2) 0%, rgba(139, 92, 246, 0.15) 100%);
       border: 1px solid rgba(229, 9, 20, 0.3);
@@ -122,7 +127,6 @@
       margin-bottom: 14px;
     }
 
-    /* TARJETAS DE APLICACIONES */
     .apk-card {
       background: var(--card);
       border: 1px solid var(--card-border);
@@ -184,23 +188,26 @@
     .btn-download:active {
       transform: scale(0.96);
     }
+
+    .btn-download.disabled {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-muted);
+      border: 1px solid var(--card-border);
+      pointer-events: none;
+      box-shadow: none;
+    }
   </style>
 </head>
 <body>
 
-  <!-- BARRA SUPERIOR -->
   <div class="topbar">
     <div class="brand">
       <div class="logo-container">
-        <svg viewBox="0 0 100 100" width="28" height="28">
-          <circle cx="50" cy="50" r="46" fill="#000" stroke="#e50914" stroke-width="4"/>
-          <path d="M 32 25 L 56 25 C 68 25 74 31 74 42 C 74 53 66 58 56 58 L 44 58 L 44 75 L 32 75 Z M 44 36 L 44 48 L 54 48 C 60 48 62 45 62 42 C 62 38 59 36 54 36 Z" fill="#ffffff"/>
-          <path d="M 52 56 L 68 75 L 54 75 L 42 60 Z" fill="#e50914"/>
-        </svg>
+        <img src="5dde2d0a-c0a9-486f-95e7-c4910b5716fb.jpg" alt="Logo" onerror="this.style.display='none'">
       </div>
       <div>
-        <div class="brand-title">Rosario Servicios Digitales</div>
-        <div class="brand-tag">CENTRO DE DESCARGAS OFICIAL</div>
+        <div class="brand-title">Rosario Digital</div>
+        <div class="brand-tag">CENTRO DE DESCARGAS</div>
       </div>
     </div>
   </div>
@@ -208,10 +215,22 @@
   <div class="container">
     <div class="hero-banner">
       <h2>Catálogo de Aplicaciones</h2>
-      <p>Descargá e instalá las aplicaciones autorizadas directamente en tu Smart TV, TV Box o dispositivo Android.</p>
+      <p>Descargá e instalá las aplicaciones autorizadas en tu Smart TV, TV Box o dispositivo Android.</p>
     </div>
 
     <div class="section-title">Aplicaciones Disponibles</div>
+
+    <!-- YOUTUBE PREMIUM (Descarga directa del APK) -->
+    <div class="apk-card">
+      <div class="apk-info">
+        <div class="apk-icon yt">▶</div>
+        <div>
+          <div class="apk-name">Rosario Play (YouTube)</div>
+          <div class="apk-desc">Sin anuncios y reproducción en segundo plano</div>
+        </div>
+      </div>
+      <a href="https://github.com/rosariodigital/descargas/raw/refs/heads/main/RosarioPlay.apk.apk" class="btn-download">Descargar APK</a>
+    </div>
 
     <!-- FEMON PLAY TV -->
     <div class="apk-card">
@@ -222,43 +241,31 @@
           <div class="apk-desc">Televisión en vivo, eventos deportivos y series</div>
         </div>
       </div>
-      <a href="#" id="linkFemon" class="btn-download">Descargar</a>
+      <a href="https://app.femon.net" target="_blank" class="btn-download">Descargar APK</a>
     </div>
 
-    <!-- YOUTUBE PREMIUM -->
-    <div class="apk-card">
-      <div class="apk-info">
-        <div class="apk-icon yt">▶</div>
-        <div>
-          <div class="apk-name">YouTube Premium</div>
-          <div class="apk-desc">Sin anuncios y reproducción en segundo plano</div>
-        </div>
-      </div>
-      <a href="#" id="linkYt" class="btn-download">Descargar</a>
-    </div>
-
-    <!-- YOUTUBE MUSIC -->
+    <!-- YOUTUBE MUSIC (Próximamente) -->
     <div class="apk-card">
       <div class="apk-info">
         <div class="apk-icon yt">🎵</div>
         <div>
           <div class="apk-name">YouTube Music</div>
-          <div class="apk-desc">Música sin pausas con pantalla apagada</div>
+          <div class="apk-desc">Próximamente disponible</div>
         </div>
       </div>
-      <a href="#" id="linkYtMusic" class="btn-download">Descargar</a>
+      <a href="#" class="btn-download disabled">Próximamente</a>
     </div>
 
-    <!-- SPOTIFY ROSARIO -->
+    <!-- SPOTIFY ROSARIO (Próximamente) -->
     <div class="apk-card">
       <div class="apk-info">
         <div class="apk-icon sp">🎧</div>
         <div>
           <div class="apk-name">Spotify Rosario</div>
-          <div class="apk-desc">Sin publicidad comercial y saltos ilimitados</div>
+          <div class="apk-desc">Próximamente disponible</div>
         </div>
       </div>
-      <a href="#" id="linkSpotify" class="btn-download">Descargar</a>
+      <a href="#" class="btn-download disabled">Próximamente</a>
     </div>
   </div>
 
